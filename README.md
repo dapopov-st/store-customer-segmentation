@@ -1,7 +1,7 @@
 # Customer-Segmentation
 Please see the PowerPoint slides for main takeaways
 
-This repository contains the K-means clustering analysis of the Kaggle dataset found at https://www.kaggle.com/datasets/imakash3011/customer-personality-analysis or https://www.kaggle.com/datasets/jackdaoud/marketing-data?select=ifood_df.csv
+This repository contains the K-means clustering analysis of the Kaggle dataset found [here] (https://www.kaggle.com/datasets/imakash3011/customer-personality-analysis) or [here](https://www.kaggle.com/datasets/jackdaoud/marketing-data?select=ifood_df.csv)
 
 ### Cluster characteristics summary
 Clusters 1 and 5 are the high spenders with high income. Cluster 1 consists of loyalty customers but Cluster 5 customers spend the most per day. They are similar in most key dimensions, with Cluster 1 being slightly better educated, having more children, and having slightly higher likelihood of having a partner.
