@@ -1,7 +1,7 @@
 # Customer-Segmentation
 Please see the PowerPoint slides for main takeaways
 
-### Cluster characteristics summary¶
+### Cluster characteristics summary
 Clusters 1 and 5 are the high spenders with high income. Cluster 1 consists of loyalty customers but Cluster 5 customers spend the most per day. They are similar in most key dimensions, with Cluster 1 being slightly better educated, having more children, and having slightly higher likelihood of having a partner.
 Clusters 0-2 are the loyalty customers and Clusters 3-5 are the newer customers.
 Cluster 1 customers also have higher than average income, but probably have less disposable income due to having children
