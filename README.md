@@ -3,7 +3,18 @@ Please see the PowerPoint slides for main takeaways
 
 This repository contains the K-means clustering analysis of the Kaggle dataset found [here](https://www.kaggle.com/datasets/imakash3011/customer-personality-analysis) or [here](https://www.kaggle.com/datasets/jackdaoud/marketing-data?select=ifood_df.csv)
 
-A brief summary is below
+
+
+
+### Executive summary
+- Clusters 5 are the recent high-income customers who value the in-store experience and a polished catalog.  They are not interested in deals, but will respond to a well-executed campaign.
+- Cluster 1 are the loyalty high-income customers who are responsible for the most historic revenue brought to the company.  Like Cluster 5, they value the in-store experience, a polished catalog, are not responsive to deals, but will respond to a well-structured campaign. 
+- For Clusters 1 and 5, the store should concentrate on well-structured campaign, a pleasant in-store shopping experience, and a polished catalog.
+- Cluster 0 are have higher than average income but more children (hence probably less dispensable income), are responsive to deals and an occasional campaign. It's best to target deals at these customers.
+- Clusters 2-4 have lower than average income, accept deals at a higher rate, and visit the company's website.  The store can target deals at this demographic.
+
+
+## A more in-detail summary
 ### Cluster characteristics summary
 - Clusters 1 and 5 are the high spenders with high income. Cluster 1 consists of loyalty customers but Cluster 5 customers spend the most per day. They are similar in most key dimensions, with Cluster 1 being slightly better educated, having more children, and having slightly higher likelihood of having a partner.
 - Clusters 0-2 are the loyalty customers and Clusters 3-5 are the newer customers.
