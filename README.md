@@ -9,7 +9,7 @@ This repository contains the K-means clustering analysis of the Kaggle dataset f
 ### Executive summary
 - Clusters 5 are the recent high-income customers who value the in-store experience and a polished catalog.  They are not interested in deals, but will respond to a well-executed campaign.
 - Cluster 1 are the loyalty high-income customers who are responsible for the most historic revenue brought to the company.  Like Cluster 5, they value the in-store experience, a polished catalog, are not responsive to deals, but will respond to a well-structured campaign. 
-- For Clusters 1 and 5, the store should concentrate on well-structured campaign, a pleasant in-store shopping experience, and a polished catalog.
+- The store should concentrate on running well-structured campaigns to even better engage Cluster 1 and monitor the engagement of Cluster 5. A pleasant in-store shopping experience and a polished catalog are critical, but the store should study this demographic in detail to determine if they can be drawn away from the competitors.
 - Cluster 0 are have higher than average income but more children (hence probably less dispensable income), are responsive to deals and an occasional campaign. It's best to target deals at these customers.
 - Clusters 2-4 have lower than average income, accept deals at a higher rate, and visit the company's website.  The store can target deals at this demographic.
 
