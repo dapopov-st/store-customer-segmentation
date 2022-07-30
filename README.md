@@ -14,7 +14,7 @@ This repository contains the K-means clustering analysis of the Kaggle dataset f
 - Clusters 2-4 have lower than average income, accept deals at a higher rate, and visit the company's website.  The store can target deals and website promotions at this demographic.
 
 
-## A more in-detail summary
+## Detailed summary
 ### Cluster characteristics summary
 - Clusters 1 and 5 are the high spenders with high income. Cluster 1 consists of loyalty customers but Cluster 5 customers spend the most per day. They are similar in most key dimensions, with Cluster 1 being slightly better educated, having more children, and having slightly higher likelihood of having a partner.
 - Clusters 0-2 are the loyalty customers and Clusters 3-5 are the newer customers.
