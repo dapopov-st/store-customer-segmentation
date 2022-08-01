@@ -6,7 +6,8 @@ This repository contains the K-means clustering analysis of the Kaggle dataset f
 
 
 
-### Executive summary
+## Executive summary
+- The goal of this analysis is to segment the store's customers in order to help the store maximize revenue and improve future campaign effectiveness.
 - Cluster 5 are the recent high-income customers who value the in-store experience and a polished catalog.  They are not interested in deals, but will respond to a well-executed campaign.  When normalized by length spent as customers, this cluster brings the most revenue to the company.
 - Cluster 1 are the loyalty high-income customers who are responsible for most historic revenue brought to the company.  Like Cluster 5, they value  in-store experience, a polished catalog, are not responsive to deals, but will respond to a well-structured campaign. 
 - The store should concentrate on running well-structured campaigns to even better engage Cluster 1 and monitor the engagement of Cluster 5. A pleasant in-store shopping experience and a polished catalog are critical, but the store should study this demographic in detail to earn even more of their business.
@@ -14,7 +15,7 @@ This repository contains the K-means clustering analysis of the Kaggle dataset f
 - Clusters 2-4 have lower than average income, accept deals at a higher rate, and visit the company's website.  The store can target deals and website promotions at this demographic.
 
 
-## A more in-detail summary
+## Detailed summary
 ### Cluster characteristics summary
 - Clusters 1 and 5 are the high spenders with high income. Cluster 1 consists of loyalty customers but Cluster 5 customers spend the most per day. They are similar in most key dimensions, with Cluster 1 being slightly better educated, having more children, and having slightly higher likelihood of having a partner.
 - Clusters 0-2 are the loyalty customers and Clusters 3-5 are the newer customers.
