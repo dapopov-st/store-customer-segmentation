@@ -1,5 +1,5 @@
 # Customer-Segmentation
-Please see the PowerPoint slides for main takeaways
+Please see the [slides](https://drive.google.com/file/d/1EW1c6hJiQ_oxWCq8gBtB9KUxeQ1v49s3/view?usp=sharing) for main takeaways
 
 This repository contains the K-means clustering analysis of the Kaggle dataset found [here](https://www.kaggle.com/datasets/imakash3011/customer-personality-analysis) or [here](https://www.kaggle.com/datasets/jackdaoud/marketing-data?select=ifood_df.csv)
 
