@@ -12,6 +12,7 @@ This repository contains the K-means clustering analysis of the Kaggle dataset f
 - The store should concentrate on running well-structured campaigns to even better engage Cluster 1 and monitor the engagement of Cluster 5. A pleasant in-store shopping experience and a polished catalog are critical, but the store should study this demographic in detail to earn even more of their business.
 - Cluster 0 are have higher than average income but more children (hence probably less dispensable income), are responsive to deals and an occasional campaign. It's best to target deals at these customers.
 - Clusters 2-4 have lower than average income, accept deals at a higher rate, and visit the company's website.  The store can target deals and website promotions at this demographic.
+- In the future, the store can use the suggestions above to perform A/B testing to target different deals to different customer clusters with a focus on profitability. Furthermore, it is crucial to keep Cluster 5 customers engaged (by targeted campaigns, positive in-store experience, and other solutions that are yet to be observed) and to boost future engagement of Cluster 1 customers by similar or even better targeted measures. 
 
 
 ## Detailed summary
