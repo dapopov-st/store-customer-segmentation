@@ -3,38 +3,66 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 import seaborn as sns
+#sns.set(font_scale=1.4)
+sns.set_context("paper", rc={"font.size":1.4,"axes.titlesize":8,"axes.labelsize":5})   
+
 
 data = pd.read_csv('./data/final_clustered.csv',index_col=0)
 
 
-def box_plots(data,cluster_lab="KM3",y="Education"):
-    plt.figure(figsize=(9, 7))
+def box_plots(data,cluster_lab1="KM3",cluster_lab2="GM3",y="NumWebPurchases",y_lab=None):
+    fig, (ax0,ax1) = plt.subplots(nrows=1,ncols=2, sharey=True, figsize=(14,10))
 
-    sns.boxplot(x=cluster_lab, y=y, data=data)
+    sns.boxplot(data=data,ax=ax0,x=cluster_lab1, y=y)
+    sns.boxplot(data=data,ax=ax1,x=cluster_lab2, y=y)#,order=[2,1,0])
+
     sns.despine(offset=10, trim=True)
+    ax0.set(xlabel=f'Cluster labels for {cluster_lab1}')
+    ax1.set(xlabel=f'Cluster labels for {cluster_lab2}')
 
-    plt.title(f'Cluster labels for {y}')
+    #plt.title(f'Cluster labels for {y}')
+    plt.suptitle(f'Cluster labels for {y_lab}')
+
+    plt.show()
+    plt.clf() #clear figure
 
 
-def bar_charts(data,cluster_lab="KM3",y="Education"):
+def bar_charts(data,cluster_lab1="KM3",cluster_lab2="GM3",y="Education"):
+    fig, (ax0,ax1) = plt.subplots(nrows=1,ncols=2, sharey=True, figsize=(14,12))
+
     plt.figure(figsize=(9, 7))
     palette=sns.color_palette("Set2")
-    plot = sns.countplot(x=data[cluster_lab],hue=data[y], palette = palette)
+    sns.countplot(data=data,ax=ax0,x=cluster_lab1,hue=y, palette = palette)
+    sns.countplot(data=data,ax=ax1,x=cluster_lab2,hue=y, palette = palette)
 
-    plot.set_title(f"Cluster Profiles Based On {y}")
-    plt.legend()
-    plt.show()
-
-def cluster_scatter(data,x_lab,y_lab,cluster_lab):
-    #print(f'Scatter plots for {y_lab} vs {x_lab}')
-    plt.figure(figsize=(9, 7))
-    #palette=sns.color_palette("rocket", as_cmap=True)
-    #palette = sns.color_palette("cmo.balance", n_colors=64, desat=0.2)
-    plot = sns.scatterplot(data = data,x=data[x_lab], y=data[y_lab],hue=data[cluster_lab],alpha=.5)#,palette=palette)
-
-    plot.set_title(f"Cluster Profiles Over {x_lab} and {y_lab}")
+    fig.suptitle(f"Cluster Profiles Based On {y}")
     #plt.legend()
     plt.show()
+    plt.clf()
+
+
+# def cluster_scatter(data,x_lab,y_lab,cluster_lab):
+#     #print(f'Scatter plots for {y_lab} vs {x_lab}')
+#     plt.figure(figsize=(9, 7))
+#     #palette=sns.color_palette("rocket", as_cmap=True)
+#     #palette = sns.color_palette("cmo.balance", n_colors=64, desat=0.2)
+#     plot = sns.scatterplot(data = data,x=data[x_lab], y=data[y_lab],hue=data[cluster_lab],alpha=.5)#,palette=palette)
+
+#     plot.set_title(f"Cluster Profiles Over {x_lab} and {y_lab}")
+#     #plt.legend()
+#     plt.show()
+
+def cluster_scatter(data,cluster_lab1="KM3",cluster_lab2="GM3",x='Income',y="MntTotal",x_lab=None, y_lab=None):
+    fig, (ax0,ax1) = plt.subplots(nrows=1,ncols=2, sharey=True, figsize=(14,10))
+    plt.figure(figsize=(9, 7))
+ 
+    sns.scatterplot(data = data,ax=ax0,x=x, y=y,hue=cluster_lab1,alpha=.5)#,palette=palette)
+    sns.scatterplot(data = data,ax=ax1,x=x, y=y,hue=cluster_lab2,alpha=.5,hue_order=['2','1','0'])#,palette=palette)
+
+    fig.suptitle(f"Cluster Profiles Over {x_lab} and {y_lab}",)
+    plt.show()
+    plt.clf() #clear figure
+
 
 
 def bar_charts_large(data,cluster_lab="KM3",y="Education",y_lim=60):
@@ -64,94 +92,112 @@ def bar_charts_large(data,cluster_lab="KM3",y="Education",y_lim=60):
 
 
 
-def campaign_bar(data,campaign='AcceptedCmpTot',cluster_lab='KM3'):
-    plt.figure(figsize=(14, 8))
-    #palette=sns.color_palette("rocket", as_cmap=True)
-    sns.countplot(x=data[campaign],hue=data[cluster_lab])
+def campaign_bar(data,cluster_lab1="KM3",cluster_lab2="GM3",y="NumWebPurchases",campaign=None,y_lab=None):
+    fig, (ax0,ax1) = plt.subplots(nrows=1,ncols=2, sharey=True, figsize=(14,12))
+
+    sns.countplot(data=data,ax=ax0,x=cluster_lab1,hue=y)#, palette = palette)
+    sns.countplot(data=data,ax=ax1,x=cluster_lab2,hue=y)#, palette = palette)
 
     plt.title(f"Cluster Profiles Based On Campaign {campaign[-1]} Acceptance")
-    plt.legend(title='Cluster',loc=1)
-    #plt.savefig('./figures/num_total_acceptance.png')
-def campaign_bar_all(data, cluster_lab='KM3'):
+    fig.suptitle(f"Cluster Profiles Based On {y}")
+    plt.show()
+    plt.clf()
+
+
+
+
+def campaign_bar_all(data, cluster_lab1='KM3',cluster_lab2='GM3'):
     for campaign in ['AcceptedCmp1','AcceptedCmp2','AcceptedCmp3','AcceptedCmp4','AcceptedCmp5','AcceptedCmpTot']:
-        campaign_bar(data,campaign=campaign, cluster_lab=cluster_lab)
+        campaign_bar(data,cluster_lab1,cluster_lab2,y="NumWebPurchases",campaign=campaign,y_lab=None)
 
 
 
-def cluster_for_medium(data,cluster_lab='KM3'):
+def cluster_for_medium(data,cluster_lab1="KM3",cluster_lab2="GM3"):
     mediums = ['NumWebPurchases','NumWebPurchasesNorm','NumCatalogPurchases','NumCatalogPurchasesNorm',
                'NumStorePurchases','NumStorePurchasesNorm','NumWebVisitsMonth','NumWebVisitsMonthNorm',
                 'NumTotalPurchases']
     for medium in mediums:
-        box_plots(data,cluster_lab=cluster_lab,y=medium)
+        box_plots(data,cluster_lab1,cluster_lab2,y=medium)
 
 
-def cluster_for_type(data,cluster_lab='KM3'):
+def cluster_for_type(data,cluster_lab1="KM3",cluster_lab2="GM3"):
     prod_types = ["MntWines","MntWinesNorm","MntMeatProducts","MntMeatProductsNorm",
                 "MntFishProducts","MntFishProductsNorm","MntSweetProducts","MntSweetProductsNorm",
                 "MntGoldProds","MntGoldProdsNorm"]
     for prod_type in prod_types:
-        box_plots(data,cluster_lab=cluster_lab,y=prod_type)
+        box_plots(data,cluster_lab1,cluster_lab2,y=prod_type)
 
 
-def cluster_for_spent_and_len(data,cluster_lab='KM3'):
+
+def cluster_for_spent_and_len(data,cluster_lab1="KM3",cluster_lab2="GM3"):
     print("CLUSTERING RESULTS OVER AMOUNT SPENT AND LENGTH AS CUSTOMER")
-    #cluster_for_spent_and_len(cluster_lab=cluster_lab)
     print("Income vs Total Amount Plot")
-    cluster_scatter(data,x_lab='Income',y_lab='MntTotal',cluster_lab=cluster_lab)
+    cluster_scatter(data,cluster_lab1,cluster_lab2,x='Income',y="MntTotal",x_lab=None, y_lab='Total Amount Spent')
     print("Income vs Total Normalized Amount Plot")
-    cluster_scatter(data=data,x_lab='Income',y_lab='MntSpentNorm',cluster_lab=cluster_lab)
-    box_plots(data,cluster_lab=cluster_lab,y="MntTotal")
-    box_plots(data,cluster_lab=cluster_lab,y="MntSpentNorm")
-    box_plots(data,cluster_lab=cluster_lab,y="Len_Customer")
-    box_plots(data,cluster_lab=cluster_lab,y="SpendPropOfTotal")
-    box_plots(data,cluster_lab=cluster_lab,y="AvgPerPurchase")
-    box_plots(data,cluster_lab=cluster_lab,y="NumTotalPurchasesNorm")
+    cluster_scatter(data,cluster_lab1,cluster_lab2,x='Income',y="MntSpentNorm",x_lab=None, y_lab='Total Amount Spent Vs. Income')
+    cluster_scatter(data,cluster_lab1,cluster_lab2,x='Income',y="MntSpentNorm",x_lab=None, y_lab='Normalized Total Amount Spent Vs. Income')
+
+
+    box_plots(data,cluster_lab1,cluster_lab2,y='MntTotal')
+    box_plots(data,cluster_lab1,cluster_lab2,y='MntSpentNorm')
+    box_plots(data,cluster_lab1,cluster_lab2,y='Len_Customer')
+    box_plots(data,cluster_lab1,cluster_lab2,y='SpendPropOfTotal')
+    box_plots(data,cluster_lab1,cluster_lab2,y='AvgPerPurchase')
+    box_plots(data,cluster_lab1,cluster_lab2,y='NumTotalPurchasesNorm')
 
 
 
+    
 
 
-def cluster_for_demographic(data,cluster_lab='KM3'):
-    box_plots(data,cluster_lab=cluster_lab,y="Income")
-    box_plots(data,cluster_lab=cluster_lab,y="age")
-    bar_charts_large(data,cluster_lab,y='Education',y_lim=60)
-    bar_charts_large(data,cluster_lab,y='HasPartner',y_lim=70)
-    bar_charts_large(data,cluster_lab,y='NumChildren',y_lim=80)
 
+def cluster_for_demographic(data,cluster_lab1="KM3",cluster_lab2="GM3"):
+    # box_plots(data,cluster_lab=cluster_lab,y="Income")
+    # box_plots(data,cluster_lab=cluster_lab,y="age")
+
+    box_plots(data,cluster_lab1,cluster_lab2,y='Income')
+    box_plots(data,cluster_lab1,cluster_lab2,y='age')
+
+    for y in ['Education','HasPartner','NumChildren']:
+        for cluster in ['KM3','GM3']:
+            bar_charts_large(data,cluster_lab=cluster,y=y,y_lim=85)
+            
 
 def cluster_for_recency(data,cluster_lab='KM3'):
-    cluster_scatter(data=data,x_lab='Recency',y_lab='MntTotal',cluster_lab=cluster_lab)
-    box_plots(data,cluster_lab=cluster_lab,y="Recency")
+    #cluster_scatter(data=data,x_lab='Recency',y_lab='MntTotal',cluster_lab=cluster_lab)
+    cluster_scatter(data,cluster_lab1="KM3",cluster_lab2="GM3",x='Recency',y="MntTotal",x_lab=None, y_lab='Total Amount Spent vs Recency')
 
-def run_plots(data,cluster_lab='KM3'):
+    #box_plots(data,cluster_lab=cluster_lab,y="Recency")
+    box_plots(data,cluster_lab1="KM3",cluster_lab2="GM3",y='Recency')
 
-    print(f"--------------------Producing plots for {cluster_lab}--------------------")
-    cluster_for_spent_and_len(data,cluster_lab='KM3')
+
+def run_plots(data,cluster_lab1='KM3',cluster_lab2='GM3'):
+
+    print(f"--------------------Producing plots for {cluster_lab1}--------------------")
+    cluster_for_spent_and_len(data,cluster_lab1,cluster_lab2)
 
 
     print("CLUSTERINS OVER DEMOGRAPHIC VARIABLES")
-    cluster_for_demographic(data,cluster_lab=cluster_lab)
+    cluster_for_demographic(data,cluster_lab1,cluster_lab2)
 
     print("EXAMINE DEALS AND CAMPAIGNS")
-    box_plots(data,cluster_lab=cluster_lab,y="NumDealsPurchases")
-    box_plots(data,cluster_lab=cluster_lab,y="NumDealsPurchasesNorm")
+    # box_plots(data,cluster_lab=cluster_lab,y="NumDealsPurchases")
+    # box_plots(data,cluster_lab=cluster_lab,y="NumDealsPurchasesNorm")
+
+    box_plots(data,cluster_lab1,cluster_lab2,y='NumDealsPurchases')
+    box_plots(data,cluster_lab1,cluster_lab2,y='NumDealsPurchasesNorm')
+
 
     print("CLUSTERS OVER CAMPAIGNS")
-    campaign_bar_all(data, cluster_lab=cluster_lab)
+    campaign_bar_all(data, cluster_lab1=cluster_lab1, cluster_lab2=cluster_lab2)
 
 
     print("CLUSTERS OVER PURCHASE MEDIUM")
-    cluster_for_medium(data,cluster_lab=cluster_lab)
+    cluster_for_medium(data,cluster_lab1, cluster_lab2)
 
     print("CLUSTERS OVER PRODUCT TYPE")
-    cluster_for_type(data,cluster_lab=cluster_lab)
+    cluster_for_type(data,cluster_lab1,cluster_lab2)
 
     print("CLUSTERS OVER RECENCY")
-    cluster_scatter(data=data,x_lab='Recency',y_lab='MntTotal',cluster_lab='KM3')
-
-
-
-
-
+    cluster_scatter(data,cluster_lab1,cluster_lab2,x='Income',y="MntTotal",x_lab=None, y_lab=None)
 

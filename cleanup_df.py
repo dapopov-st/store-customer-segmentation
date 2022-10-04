@@ -36,4 +36,9 @@ df['SpendPropOfTotal'] = (df['MntTotal']/df['Len_Customer'])/(df['Income']/796) 
 df['AvgPerPurchase'] = df['MntTotal']/df['NumTotalPurchases']
 df['NumTotalPurchasesNorm']=df['NumTotalPurchases']/df['Len_Customer']
 
+#Relabel GM3 column for easier comparison with KM3
+dict_={0:2,1:1,2:0}
+df=df.replace({'GM3':dict_})
+
+
 df.to_csv('data/final_clustered_extra_cols.csv')
