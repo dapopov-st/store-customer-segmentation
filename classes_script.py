@@ -26,8 +26,6 @@ import warnings
 warnings.filterwarnings('ignore')
 pd.set_option('display.max_rows',500)
 
-import hdbscan
-import folium
 import re
 
 import plotly.express as px
@@ -158,6 +156,7 @@ class PcaAnalyzer:
         ###XXX changed figsize
         fig, ax = plt.subplots(figsize = (self.N_pca + 2,.4 * len(set(self.subset))))
         ax = sns.heatmap(loadings_df, annot=True, cmap='Spectral')
+        plt.title("Principal Component Loadings")
         plt.show()
 
         print("Scree plot")
@@ -170,6 +169,7 @@ class PcaAnalyzer:
         df_cluster_mnt_totals=df_cluster_mnt_totals.T.reset_index().rename({0:'Percent of Variance Explained'},axis=1)
 
         fig=df_cluster_mnt_totals.sort_values('Percent of Variance Explained', ascending=False).plot.bar(color='#4503fc')
+        plt.title('Scree Plot')
 
         fig.set_xticklabels(columns)
         
@@ -380,7 +380,7 @@ class GrapherPcad:
         print(f"{self.pca_comps_df['Clstrs'+self.clstr_lbl].nunique()} clusters with labels in {self.cluster_nums}")
 
     
-    def plot_clusters(self, fltr_clstr_num=None):
+    def plot_clusters(self):
         """
         clstr_lbl: cluster label obtained by running the Clusterer class with the corresponding clustering algorithm
         """
@@ -391,14 +391,16 @@ class GrapherPcad:
         cmap = colors.ListedColormap(['#9467bd',"#B9C0C9", "#D6B2B1", "#682F2F", "#9E726F", "#9F8A78", "#F3AB60",
         '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728',  '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'])
 
-        fig = plt.figure(figsize=(10,8))
+        fig = plt.figure(figsize=(8,8))
         ax = plt.subplot(111, projection='3d', label="Clstrs"+self.clstr_lbl)
         ax.set_xlabel(f'Principal Component:{self.pca_indices[0]}')
         ax.set_ylabel(f'Principal Component:{self.pca_indices[1]}')
         ax.set_zlabel(f'Principal Component:{self.pca_indices[2]}')
         ax.scatter(self.pcas['x'], self.pcas['y'], self.pcas['z'], s=40, c=self.pca_comps_df["Clstrs"+self.clstr_lbl], marker='o', cmap = cmap )
-        ax.set_title("The Plot Of The Clusters")
+        ax.set_title("Plot Of The Clusters")
+        ax.dist = 11 # to prevent z_label from being cut off
         plt.show()
+        plt.clf()
 
     def plot_interactive(self):
         labels = {'x':f'PC{self.pca_indices[0]}','y':f'PC{self.pca_indices[1]}','z':f'PC{self.pca_indices[2]}'}
