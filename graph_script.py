@@ -20,8 +20,14 @@ data = pd.read_csv('./data/final_clustered.csv',index_col=0)
 def box_plots(data,cluster_lab1="KM3",cluster_lab2="GM3",y="NumWebPurchases",y_lab=None):
     fig, (ax0,ax1) = plt.subplots(nrows=1,ncols=2, sharey=True, figsize=(14,10))
 
-    sns.boxplot(data=data,ax=ax0,x=cluster_lab1, y=y,showfliers=False) #showfliers=False removes outliers in plot
-    sns.boxplot(data=data,ax=ax1,x=cluster_lab2, y=y,showfliers=False)#,order=[2,1,0])
+    sns.boxplot(data=data,ax=ax0,x=cluster_lab1, y=y,showfliers=False, showmeans=True,meanprops={"marker":"o",
+                       "markerfacecolor":"white", 
+                       "markeredgecolor":"black",
+                      "markersize":"10"}) #showfliers=False removes outliers in plot
+    sns.boxplot(data=data,ax=ax1,x=cluster_lab2, y=y,showfliers=False, showmeans=True,meanprops={"marker":"o",
+                       "markerfacecolor":"white", 
+                       "markeredgecolor":"black",
+                      "markersize":"10"})#,order=[2,1,0])
 
     sns.despine(offset=10, trim=True)
     ax0.set(xlabel=f'Cluster labels for {cluster_lab1}')
@@ -35,7 +41,7 @@ def box_plots(data,cluster_lab1="KM3",cluster_lab2="GM3",y="NumWebPurchases",y_l
 
 
 def bar_charts(data,cluster_lab1="KM3",cluster_lab2="GM3",y="Education",y_lab=None, reorder=False,catnames=['No','Yes']):
-    fig, (ax0,ax1) = plt.subplots(nrows=1,ncols=2, sharey=True, figsize=(14,12))
+    fig, (ax0,ax1) = plt.subplots(nrows=1,ncols=2, sharey=True, figsize=(10,6))
 
     plt.figure(figsize=(9, 7))
     palette=sns.color_palette("Set2")
@@ -180,7 +186,7 @@ def cluster_for_demographic(data,cluster_lab1="KM3",cluster_lab2="GM3"):
 
     for y in [('Education','Education'),('HasPartner','Having a Partner'),('NumChildren','Number of Children')]:
         for cluster in ['KM3','GM3']:
-            bar_charts_large(data,cluster_lab=cluster,y=y[0],y_lab=y[1],y_lim=85)
+            bar_charts_large(data,cluster_lab=cluster,y=y[0],y_lab=y[1],y_lim=100)
             
 
 def cluster_for_recency(data,cluster_lab1='KM3',cluster_lab2='GM3'):
@@ -188,7 +194,7 @@ def cluster_for_recency(data,cluster_lab1='KM3',cluster_lab2='GM3'):
     cluster_scatter(data,cluster_lab1,cluster_lab2,x='Recency',y="MntTotal",x_lab='Recency', y_lab='Total Amount Spent')
 
     #box_plots(data,cluster_lab=cluster_lab,y="Recency")
-    box_plots(data,cluster_lab1,cluster_lab2,y='Recency')
+    box_plots(data,cluster_lab1,cluster_lab2,y='Recency',y_lab='Recency')
 
 
 def run_plots(data,cluster_lab1='KM3',cluster_lab2='GM3'):

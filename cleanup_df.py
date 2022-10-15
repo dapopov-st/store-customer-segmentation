@@ -32,7 +32,7 @@ df['NumStorePurchasesNorm']=df['NumStorePurchases']/df['Len_Customer']
 df['NumWebVisitsMonthNorm']=df['NumWebVisitsMonth']/df['Len_Customer']
 
 df['NumCatalogPurchasesNorm']=df['NumCatalogPurchases']/df['Len_Customer']
-df['SpendPropOfTotal'] = (df['MntTotal']/df['Len_Customer'])/(df['Income']/796) #Daily spending/Daily Income
+df['SpendPropOfTotal'] = (df['MntTotal']/df['Len_Customer'])/(df['Income']/365) #Daily spending/Daily Income -> corrected 10/11/22
 df['AvgPerPurchase'] = df['MntTotal']/df['NumTotalPurchases']
 df['NumTotalPurchasesNorm']=df['NumTotalPurchases']/df['Len_Customer']
 
